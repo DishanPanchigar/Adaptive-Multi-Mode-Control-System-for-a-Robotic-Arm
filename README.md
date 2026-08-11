@@ -2,7 +2,7 @@
 
 A Wi-Fi–based, gesture-controlled robotic arm system that lets an operator drive a robotic arm using natural hand movements — no complex coding or teach-pendant programming required. The system also supports saving and replaying motion sequences and a manual joystick override, all switchable on the fly.
 
-![Integrated system — glove, control unit, and robotic arm](Integration_1.jpeg)
+![Integrated system — glove, control unit, and robotic arm](Images_Diagrams/Integration_1.jpeg)
 *Module‑1 (glove) worn on the hand, Module‑2 control unit (joysticks, LCD, status LEDs), and the 4‑DOF robotic arm — fully integrated and powered.*
 
 **Project Presented by: Group 4**
@@ -172,10 +172,10 @@ The **Arduino UNO R4 Wi-Fi** is the receiver/actuator controller — it interpre
 | Joystick-B | VCC / GND / VERT (Vy) / HORI (Vx) | 5V / GND / A2 / A3 |
 | PCA9685 Servo Shield | VCC / GND / V+ / OE / V+(Ext) / GND(Ext) | 5V / GND / 5V / GND / VCC (external) / GND (external → GND) |
 
-![Data communication within Module-2](Control_System.png)
+![Data communication within Module-2](Images_Diagrams/Control_System.png)
 *Figure 2.1[a] — Data communication within Module-2 (base prototype).*
 
-![Module-2 base prototype circuit](Module_2_Control_System_CD_Simplified.png)
+![Module-2 base prototype circuit](Images_Diagrams/Module_2_Control_System_CD_Simplified.png)
 *Figure 2.2 — Circuit diagram of the Module-2 prototype (Arduino UNO, dual joysticks, PCA9685).*
 
 ### Module-2 wiring — with added accessories (status LEDs, LCD, cooling fan)
@@ -191,22 +191,22 @@ The accessories are mounted on a second, separate board (**Arduino UNO R3**) so 
 | 16x2 LCD (I2C) | VCC / GND / SDA / SCL | 5V / GND / A4 / A5 |
 | External power supply | VCC (external) / GND (external) | Vin / GND |
 
-![Data communication within Module-2, with accessories](Control_System_Prototyped.png)
+![Data communication within Module-2, with accessories](Images_Diagrams/Control_System_Prototyped.png)
 *Figure 2.1[b] — Data communication within Module-2 with added accessories (status LEDs, LCD, fan on a secondary Arduino UNO R3).*
 
-![Module-2 final circuit with accessories](Module_2_Prototype_CD.png)
+![Module-2 final circuit with accessories](Images_Diagrams/Module_2_Prototype_CD.png)
 *Figure 2.3 — Circuit diagram of Module-2 with added accessories: dual joysticks, PCA9685, status/override LEDs, 16x2 I2C LCD, and cooling fan. This is the finalized design used for Module-2.*
 
 ## Firmware Logic / Algorithms
 
 **Module-1 (ESP32)** initializes its peripherals, waits for a TCP client connection, then continuously reads the MPU6050 and push-button states, streams them over TCP, and updates the OLED with the live variable data.
 
-![Module-1 algorithm flowchart](Module_1_Workflow.png)
+![Module-1 algorithm flowchart](Images_Diagrams/Module_1_Workflow.png)
 *Figure 3.1 — Algorithm of Module-1.*
 
 **Module-2 (Arduino UNO R4 Wi-Fi)** waits for a client connection, then parses incoming data into Arm-States, drives the corresponding servo channels, and manages saving/running/looping/resetting the stored Arm-State array based on the SAVE / RUN / CLAW / RESET flags.
 
-![Module-2 algorithm flowchart](Module_2_Workflow.png)
+![Module-2 algorithm flowchart](Images_Diagrams/Module_2_Workflow.png)
 *Figure 3.2 — Algorithm of Module-2.*
 
 ### Servo Channel Mapping
@@ -240,8 +240,8 @@ The Arduino is connected to the PCA9685 servo driver as follows:
 
 | | |
 |---|---|
-| ![Glove build 1](Glove_1.jpeg) | ![Glove build 2](Glove_2.jpeg) |
-| ![Glove prototype 1](Glove_Prototype_1.jpeg) | ![Glove prototype 2](Glove_Prototype_2.jpeg) |
+| ![Glove build 1](Images_Diagrams/Glove_1.jpeg) | ![Images_Diagrams/Glove build 2](Images_Diagrams/Glove_2.jpeg) |
+| ![Glove prototype 1](Images_Diagrams/Glove_Prototype_1.jpeg) | ![Glove prototype 2](Images_Diagrams/Glove_Prototype_2.jpeg) |
 
 *The insulated glove with the MPU6050 mounted on the back of the palm, ESP32 + OLED strapped to the wrist, and CLAW / SAVE / RUN / RESET push-buttons positioned along the index finger for easy access.*
 
@@ -249,14 +249,14 @@ The Arduino is connected to the PCA9685 servo driver as follows:
 
 | | |
 |---|---|
-| ![Controller build 1](Controller_1.jpeg) | ![Controller prototype 1](Controller_Prototype_1.jpeg) |
-| ![Controller prototype 2](Controller_Prototype_2.jpeg) | ![Controller prototype 3](Controller_Prototype_3.jpeg) |
+| ![Controller build 1](Images_Diagrams/Controller_1.jpeg) | ![Controller prototype 1](Images_Diagrams/Controller_Prototype_1.jpeg) |
+| ![Controller prototype 2](Images_Diagrams/Controller_Prototype_2.jpeg) | ![Controller prototype 3](Images_Diagrams/Controller_Prototype_3.jpeg) |
 
 *The Arduino UNO R4 Wi-Fi and PCA9685 servo driver wired up and driving the 4-DOF robotic arm on the breadboard, through to the finalized control-box build with joysticks, LCD, and status LEDs.*
 
 ### Full System Integration
 
-![Fully integrated system](Integration_1.jpeg)
+![Fully integrated system](Images_Diagrams/Integration_1.jpeg)
 *The glove (Module-1), the control box (Module-2, with joysticks, LCD, and LED indicators), and the 4-DOF robotic arm — connected and powered for a live demo.*
 
 ## Demo Videos
